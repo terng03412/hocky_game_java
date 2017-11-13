@@ -13,12 +13,14 @@ public class GameScreen extends ScreenAdapter{
 	private HockeyGame hockeyGame;
 	private Texture playerImg;
 	World world;
+	WorldRenderer worldRenderer;
 	private Player player;
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
 		playerImg = new Texture("player.png");
 		world = new World(hockeyGame);
+		worldRenderer = new WorldRenderer(hockeyGame , world);
 	}
 	
 	public void update(float delta) {
@@ -35,8 +37,6 @@ public class GameScreen extends ScreenAdapter{
 			
 		}
 		
-		
-	
 	
 	}
 	
@@ -47,12 +47,8 @@ public class GameScreen extends ScreenAdapter{
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	
-		SpriteBatch batch = hockeyGame.batch;
+		worldRenderer.render(delta);
 		
-		batch.begin();
-		Vector2 pos = player.getPosition();
-		batch.draw(playerImg, pos.x ,pos.y);
-		batch.end();
 	}
 	
 	
