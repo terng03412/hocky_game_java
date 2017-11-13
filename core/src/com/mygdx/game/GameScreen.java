@@ -12,17 +12,18 @@ public class GameScreen extends ScreenAdapter{
 
 	private HockeyGame hockeyGame;
 	private Texture playerImg;
+	World world;
 	private Player player;
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
 		playerImg = new Texture("player.png");
-		
-		player = new Player(100,100);
+		world = new World(hockeyGame);
 	}
 	
 	public void update(float delta) {
-
+		
+		player = world.getPlayer();
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.move(player.DIRECTION_LEFT);
 		}
