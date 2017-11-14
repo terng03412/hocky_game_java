@@ -34,7 +34,7 @@ public class Enemy {
 	}
 	
 	public void increase_speed() {
-		enemy_speed += 0.5;
+		enemy_speed += 0.25;
 	}
 		
 }

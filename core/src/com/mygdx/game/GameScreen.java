@@ -66,7 +66,7 @@ public class GameScreen extends ScreenAdapter{
 		if(ball_pos.x<100) {
 			ball.CHANGE_DIR_X_AXIS();
 		}
-		else if(ball_pos.x > 400) {
+		else if(ball_pos.x > HockeyGame.SC_WIDTH-100) {
 			ball.CHANGE_DIR_X_AXIS();
 		}
 		
@@ -105,7 +105,7 @@ public class GameScreen extends ScreenAdapter{
 		}
 		
 		
-		if(ball_pos.y > 730 || ball_pos.y<70) {
+		if(ball_pos.y > HockeyGame.SC_HEIGHT-70 || ball_pos.y<70) {
 			ball.stop();
 			ball.set_to_init();
 			enemy.set_speed_toInit();

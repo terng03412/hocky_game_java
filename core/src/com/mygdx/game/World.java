@@ -10,9 +10,9 @@ public class World {
 	World(HockeyGame hockeyGame){
 		this.hockeyGame = hockeyGame;
 		
-		player = new Player(250, 100);
-		ball = new Ball(250,400);
-		enemy = new Enemy(250, 700);
+		player = new Player(HockeyGame.SC_WIDTH/2, 100);
+		ball = new Ball(HockeyGame.SC_WIDTH/2,HockeyGame.SC_HEIGHT/2);
+		enemy = new Enemy(HockeyGame.SC_WIDTH/2, HockeyGame.SC_HEIGHT-100);
 	}
 	Player getPlayer() {
 		return player;

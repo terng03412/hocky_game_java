@@ -22,8 +22,8 @@ public class Ball {
 	}
     
     public void set_to_init() {
-    	position.x = 250;
-    	position.y = 400; 
+    	position.x = HockeyGame.SC_WIDTH/2;
+    	position.y = HockeyGame.SC_HEIGHT/2; 
     	BALL_SPEED = 1;
     }
 
@@ -48,7 +48,7 @@ public class Ball {
 	}
 	
 	public void INCREASE_SPEED() {
-		BALL_SPEED += 0.7 ;
+		BALL_SPEED += 0.5 ;
 	}
 	
 	public float getSpeed() {
