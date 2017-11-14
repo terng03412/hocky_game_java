@@ -24,7 +24,7 @@ public class Ball {
     public void set_to_init() {
     	position.x = HockeyGame.SC_WIDTH/2;
     	position.y = HockeyGame.SC_HEIGHT/2; 
-    	BALL_SPEED = 1;
+    	BALL_SPEED = 2;
     }
 
 	public Vector2 getPosition() {

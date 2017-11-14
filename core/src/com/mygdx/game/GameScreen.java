@@ -22,10 +22,10 @@ public class GameScreen extends ScreenAdapter{
 	private Ball ball;
 	private Enemy enemy;
 	
-	private int player_width = 50;
+	private int player_width = 60;
 	private int player_height = 40;
 	
-	private int enemy_width = 50;
+	private int enemy_width = 60;
 	private int enemy_height = 40;
 	
 	public GameScreen(HockeyGame hockeyGame) {
@@ -59,9 +59,21 @@ public class GameScreen extends ScreenAdapter{
 		else {
 			player.move(player.DIRECTION_STILL);	
 		}
+		
+//		debug
+//		Vector2 player_pos = player.getPosition();
+//		Vector2 ball_pos = ball.getPosition();
+//		
+//		if(player_pos.x>ball_pos.x) {
+//			player.move(player.DIRECTION_LEFT);
+//		}
+//		else if(player_pos.x < ball_pos.x) {
+//			player.move(player.DIRECTION_RIGHT);
+//		}
+		
 //		------------------------------------------------------
 		Vector2 ball_pos = ball.getPosition();
-		
+		//debug
 		
 		if(ball_pos.x<100) {
 			ball.CHANGE_DIR_X_AXIS();
@@ -73,9 +85,10 @@ public class GameScreen extends ScreenAdapter{
 		ball.move();
 //		----------------------------------------------------
 		Vector2 player_pos = player.getPosition();
+		//debug
 		
-		if(ball_pos.x < player_pos.x+player_width 
-				& ball_pos.x > player_pos.x-player_width 
+		if(ball_pos.x < player_pos.x+player_width*1.5 
+				& ball_pos.x > player_pos.x-player_width *1.5
 				& ball_pos.y < player_pos.y+player_height
 				) {
 			ball.CHANGE_DIR_Y_AXIS();
@@ -87,8 +100,8 @@ public class GameScreen extends ScreenAdapter{
 //		----------------------------------------------------
 		Vector2 enemy_pos = enemy.getPosition();
 		
-		if(ball_pos.x < enemy_pos.x+enemy_width 
-				& ball_pos.x > enemy_pos.x-enemy_width 
+		if(ball_pos.x < enemy_pos.x+enemy_width*1.5 
+				& ball_pos.x > enemy_pos.x-enemy_width*1.5 
 				& ball_pos.y > enemy_pos.y-enemy_height
 				) {
 			ball.CHANGE_DIR_Y_AXIS();
