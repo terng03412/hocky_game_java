@@ -8,7 +8,7 @@ public class Ball {
 
 
     public int stop_ball=0;
-    public int BALL_SPEED = 2;
+    public float BALL_SPEED = 2;
     public int X_AXIS_DIRECTION = 1;
     public int Y_AXIS_DIRECTION = 1;
 	
@@ -24,7 +24,7 @@ public class Ball {
     public void set_to_init() {
     	position.x = 250;
     	position.y = 400; 
-    	BALL_SPEED = 2;
+    	BALL_SPEED = 1;
     }
 
 	public Vector2 getPosition() {
@@ -48,10 +48,10 @@ public class Ball {
 	}
 	
 	public void INCREASE_SPEED() {
-		BALL_SPEED += 1 ;
+		BALL_SPEED += 0.7 ;
 	}
 	
-	public int getSpeed() {
+	public float getSpeed() {
 		return BALL_SPEED;
 	}
 		

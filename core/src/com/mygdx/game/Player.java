@@ -9,6 +9,7 @@ public class Player {
     public static final int DIRECTION_RIGHT = 1;
     public static final int DIRECTION_LEFT = 2;
     public static final int DIRECTION_STILL = 0;
+    private int SPEED = 4;
     
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},
@@ -21,7 +22,7 @@ public class Player {
 	}
 	
 	public void move (int dir) {
-		position.x += 5*DIR_OFFSETS[dir][0]; 
+		position.x += SPEED*DIR_OFFSETS[dir][0]; 
 	}
 	
 	public Vector2 getPosition() {

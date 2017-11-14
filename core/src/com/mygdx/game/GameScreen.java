@@ -22,18 +22,18 @@ public class GameScreen extends ScreenAdapter{
 	private Ball ball;
 	private Enemy enemy;
 	
-	private int player_width = 20;
-	private int player_height = 20;
+	private int player_width = 50;
+	private int player_height = 40;
 	
-	private int enemy_width = 20;
-	private int enemy_height = 20;
+	private int enemy_width = 50;
+	private int enemy_height = 40;
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
 		
-		playerImg = new Texture("player.png");
+		playerImg = new Texture("base.gif");
 		ballImg = new Texture("player.png");
-		enemyImg = new Texture("player.png");
+		enemyImg = new Texture("base.gif");
 		
 		
 		world = new World(hockeyGame);
@@ -81,6 +81,7 @@ public class GameScreen extends ScreenAdapter{
 			ball.CHANGE_DIR_Y_AXIS();
 			ball.INCREASE_SPEED();
 			ball.move();
+			enemy.increase_speed();
 		}
 		
 //		----------------------------------------------------
@@ -93,6 +94,7 @@ public class GameScreen extends ScreenAdapter{
 			ball.CHANGE_DIR_Y_AXIS();
 			ball.INCREASE_SPEED();
 			ball.move();
+			enemy.increase_speed();
 		}
 		
 		if(enemy_pos.x>ball_pos.x) {
@@ -103,9 +105,10 @@ public class GameScreen extends ScreenAdapter{
 		}
 		
 		
-		if(ball_pos.y > 750 || ball_pos.y<50) {
+		if(ball_pos.y > 730 || ball_pos.y<70) {
 			ball.stop();
 			ball.set_to_init();
+			enemy.set_speed_toInit();
 			
 		}
 		

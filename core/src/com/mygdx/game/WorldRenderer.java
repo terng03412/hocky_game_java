@@ -20,9 +20,9 @@ public class WorldRenderer {
 	 
 	        this.world = world;
 	 
-	        playerImg = new Texture("player.png");
+	        playerImg = new Texture("base.gif");
 	        ballImg = new Texture("player.png");
-	        enemyImg = new Texture("player.png");
+	        enemyImg = new Texture("base.gif");
 	}
 	
 	public void render(float delta) {
