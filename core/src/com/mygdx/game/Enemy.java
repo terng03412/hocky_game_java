@@ -9,7 +9,7 @@ public class Enemy {
     public static final int DIRECTION_RIGHT = 1;
     public static final int DIRECTION_LEFT = 2;
     public static final int DIRECTION_STILL = 0;
-    private int enemy_speed = 1;
+    private int enemy_speed = 2;
     
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},

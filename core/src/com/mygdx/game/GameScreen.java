@@ -49,9 +49,12 @@ public class GameScreen extends ScreenAdapter{
 //		-----------------------------------------------------
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.move(player.DIRECTION_LEFT);
+			ball.start();
+			
 		}
 		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			player.move(player.DIRECTION_RIGHT);
+			ball.start();
 		}
 		else {
 			player.move(player.DIRECTION_STILL);	
@@ -100,6 +103,11 @@ public class GameScreen extends ScreenAdapter{
 		}
 		
 		
+		if(ball_pos.y > 750 || ball_pos.y<50) {
+			ball.stop();
+			ball.set_to_init();
+			
+		}
 		
 	
 	}

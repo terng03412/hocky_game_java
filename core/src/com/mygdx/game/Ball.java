@@ -7,7 +7,7 @@ public class Ball {
 	private Vector2 position;
 
 
-    
+    public int stop_ball=0;
     public int BALL_SPEED = 2;
     public int X_AXIS_DIRECTION = 1;
     public int Y_AXIS_DIRECTION = 1;
@@ -17,15 +17,28 @@ public class Ball {
 	}
     
     public void move () {
-		position.x += BALL_SPEED*X_AXIS_DIRECTION;
-		position.y += BALL_SPEED*Y_AXIS_DIRECTION*-1;
+		position.x += BALL_SPEED*X_AXIS_DIRECTION*stop_ball;
+		position.y += BALL_SPEED*Y_AXIS_DIRECTION*stop_ball;
 	}
     
+    public void set_to_init() {
+    	position.x = 250;
+    	position.y = 400; 
+    	BALL_SPEED = 2;
+    }
 
 	public Vector2 getPosition() {
 		return position;
 	}
 	
+	public void start() {
+		stop_ball = 1;
+	}
+	
+	public void stop()
+	{
+		stop_ball = 0;
+	}
 	public void CHANGE_DIR_X_AXIS() {
 		X_AXIS_DIRECTION *= -1;
 	}
@@ -35,7 +48,7 @@ public class Ball {
 	}
 	
 	public void INCREASE_SPEED() {
-		BALL_SPEED += 0.5 ;
+		BALL_SPEED += 1 ;
 	}
 	
 	public int getSpeed() {
