@@ -13,21 +13,28 @@ public class GameScreen extends ScreenAdapter{
 	
 	private Texture playerImg;
 	private Texture ballImg;
+	private Texture enemyImg;
 	
 	World world;
 	WorldRenderer worldRenderer;
 	
 	private Player player;
 	private Ball ball;
+	private Enemy enemy;
+	
 	private int player_width = 20;
 	private int player_height = 20;
 	
+	private int enemy_width = 20;
+	private int enemy_height = 20;
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
 		
 		playerImg = new Texture("player.png");
 		ballImg = new Texture("player.png");
+		enemyImg = new Texture("player.png");
+		
 		
 		world = new World(hockeyGame);
 		worldRenderer = new WorldRenderer(hockeyGame , world);
@@ -37,6 +44,7 @@ public class GameScreen extends ScreenAdapter{
 		
 		player = world.getPlayer();
 		ball = world.getBall();
+		enemy = world.getEnemy();
 		
 //		-----------------------------------------------------
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
@@ -71,6 +79,26 @@ public class GameScreen extends ScreenAdapter{
 			ball.INCREASE_SPEED();
 			ball.move();
 		}
+		
+//		----------------------------------------------------
+		Vector2 enemy_pos = enemy.getPosition();
+		
+		if(ball_pos.x < enemy_pos.x+enemy_width 
+				& ball_pos.x > enemy_pos.x-enemy_width 
+				& ball_pos.y > enemy_pos.y-enemy_height
+				) {
+			ball.CHANGE_DIR_Y_AXIS();
+			ball.INCREASE_SPEED();
+			ball.move();
+		}
+		
+		if(enemy_pos.x>ball_pos.x) {
+			enemy.move(2);
+		}
+		else if(enemy_pos.x < ball_pos.x) {
+			enemy.move(1);
+		}
+		
 		
 		
 	
