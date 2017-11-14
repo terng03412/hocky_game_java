@@ -18,7 +18,7 @@ public class Ball {
     
     public void move () {
 		position.x += BALL_SPEED*X_AXIS_DIRECTION;
-		position.y += BALL_SPEED*Y_AXIS_DIRECTION;
+		position.y += BALL_SPEED*Y_AXIS_DIRECTION*-1;
 	}
     
 

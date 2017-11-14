@@ -19,12 +19,16 @@ public class GameScreen extends ScreenAdapter{
 	
 	private Player player;
 	private Ball ball;
+	private int player_width = 10;
+	private int player_height = 20;
 	
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
+		
 		playerImg = new Texture("player.png");
 		ballImg = new Texture("player.png");
+		
 		world = new World(hockeyGame);
 		worldRenderer = new WorldRenderer(hockeyGame , world);
 	}
@@ -34,6 +38,7 @@ public class GameScreen extends ScreenAdapter{
 		player = world.getPlayer();
 		ball = world.getBall();
 		
+//		-----------------------------------------------------
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.move(player.DIRECTION_LEFT);
 		}
@@ -43,7 +48,7 @@ public class GameScreen extends ScreenAdapter{
 		else {
 			player.move(player.DIRECTION_STILL);	
 		}
-		
+//		------------------------------------------------------
 		Vector2 ball_pos = ball.getPosition();
 		
 		
@@ -55,6 +60,18 @@ public class GameScreen extends ScreenAdapter{
 		}
 		
 		ball.move();
+//		----------------------------------------------------
+		Vector2 player_pos = player.getPosition();
+		
+		if(ball_pos.x < player_pos.x+player_width 
+				& ball_pos.x > player_pos.x-player_width 
+				& ball_pos.y < player_pos.y+player_height
+//				& ball_pos.y > player_pos.y
+				) {
+			ball.CHANGE_DIR_Y_AXIS();
+//			ball.CHANGE_DIR_X_AXIS();
+			ball.move();
+		}
 		
 		
 	
