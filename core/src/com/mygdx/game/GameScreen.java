@@ -5,18 +5,26 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter{
 
 	private HockeyGame hockeyGame;
+	
 	private Texture playerImg;
+	private Texture ballImg;
+	
 	World world;
 	WorldRenderer worldRenderer;
+	
 	private Player player;
+	private Ball ball;
+	
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
 		playerImg = new Texture("player.png");
+		ballImg = new Texture("player.png");
 		world = new World(hockeyGame);
 		worldRenderer = new WorldRenderer(hockeyGame , world);
 	}
@@ -24,6 +32,8 @@ public class GameScreen extends ScreenAdapter{
 	public void update(float delta) {
 		
 		player = world.getPlayer();
+		ball = world.getBall();
+		
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.move(player.DIRECTION_LEFT);
 		}
@@ -33,6 +43,19 @@ public class GameScreen extends ScreenAdapter{
 		else {
 			player.move(player.DIRECTION_STILL);	
 		}
+		
+		Vector2 ball_pos = ball.getPosition();
+		
+		
+		if(ball_pos.x<100) {
+			ball.CHANGE_DIR_X_AXIS();
+		}
+		else if(ball_pos.x > 400) {
+			ball.CHANGE_DIR_X_AXIS();
+		}
+		
+		ball.move();
+		
 		
 	
 	}

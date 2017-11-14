@@ -10,6 +10,7 @@ public class WorldRenderer {
 	private SpriteBatch batch;
 	private World world;
 	private Texture playerImg;
+	private Texture ballImg;
 
 	public WorldRenderer(HockeyGame hockeyGame, World world) {
 	        this.hockeyGame = hockeyGame;
@@ -18,6 +19,7 @@ public class WorldRenderer {
 	        this.world = world;
 	 
 	        playerImg = new Texture("player.png");
+	        ballImg = new Texture("player.png");
 	    }
 	
 	public void render(float delta) {
@@ -25,9 +27,16 @@ public class WorldRenderer {
 		SpriteBatch batch = hockeyGame.batch;
 		
 		Player player = world.getPlayer();
+		Ball ball = world.getBall();
+		
 		batch.begin();
-		Vector2 pos = player.getPosition();
-		batch.draw(playerImg, pos.x ,pos.y);
+		
+		Vector2 player_pos = player.getPosition();
+		Vector2 ball_pos = ball.getPosition();
+		
+		batch.draw(playerImg, player_pos.x ,player_pos.y);
+		batch.draw(ballImg, ball_pos.x ,ball_pos.y);
+		
 		batch.end();
 	
 	}

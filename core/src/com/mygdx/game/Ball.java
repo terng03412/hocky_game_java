@@ -8,7 +8,7 @@ public class Ball {
 
 
     
-    public int BALL_SPEED = 5;
+    public int BALL_SPEED = 2;
     public int X_AXIS_DIRECTION = 1;
     public int Y_AXIS_DIRECTION = 1;
 	
@@ -16,7 +16,7 @@ public class Ball {
 		position = new Vector2(x,y);
 	}
     
-    public void move (int dir) {
+    public void move () {
 		position.x += BALL_SPEED*X_AXIS_DIRECTION;
 		position.y += BALL_SPEED*Y_AXIS_DIRECTION;
 	}
