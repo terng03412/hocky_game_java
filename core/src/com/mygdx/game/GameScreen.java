@@ -19,7 +19,7 @@ public class GameScreen extends ScreenAdapter{
 	
 	private Player player;
 	private Ball ball;
-	private int player_width = 10;
+	private int player_width = 20;
 	private int player_height = 20;
 	
 	
@@ -66,10 +66,9 @@ public class GameScreen extends ScreenAdapter{
 		if(ball_pos.x < player_pos.x+player_width 
 				& ball_pos.x > player_pos.x-player_width 
 				& ball_pos.y < player_pos.y+player_height
-//				& ball_pos.y > player_pos.y
 				) {
 			ball.CHANGE_DIR_Y_AXIS();
-//			ball.CHANGE_DIR_X_AXIS();
+			ball.INCREASE_SPEED();
 			ball.move();
 		}
 		

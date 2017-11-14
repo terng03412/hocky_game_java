@@ -35,7 +35,7 @@ public class Ball {
 	}
 	
 	public void INCREASE_SPEED() {
-		BALL_SPEED +=0.5 ;
+		BALL_SPEED += 0.5 ;
 	}
 	
 	public int getSpeed() {
