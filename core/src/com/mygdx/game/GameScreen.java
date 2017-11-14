@@ -31,8 +31,7 @@ public class GameScreen extends ScreenAdapter{
 			player.move(player.DIRECTION_RIGHT);
 		}
 		else {
-			player.move(player.DIRECTION_STILL);
-			
+			player.move(player.DIRECTION_STILL);	
 		}
 		
 	
