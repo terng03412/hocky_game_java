@@ -121,16 +121,24 @@ public class GameScreen extends ScreenAdapter{
 		
 		//increase score
 		if( ball_pos.y<70) {
-			ball.stop();
+//			ball.stop(); 
+			
+//			debug
 			ball.set_to_init();
+			ball.move();
+			
 			enemy.set_speed_toInit();
 			
 			world.increase_opponent_score();
 		}
 		
 		if(ball_pos.y > HockeyGame.SC_HEIGHT-70 ) {
-			ball.stop();
+//			ball.stop();
 			ball.set_to_init();
+			
+//			debug
+			ball.move();
+			
 			enemy.set_speed_toInit();
 			
 			world.increase_my_score();

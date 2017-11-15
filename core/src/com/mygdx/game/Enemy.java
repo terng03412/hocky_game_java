@@ -34,7 +34,9 @@ public class Enemy {
 	}
 	
 	public void increase_speed() {
-		enemy_speed += 0.3;
+//		enemy_speed += 0.3; // win rate 50 per
+//		enemy_speed += 0.32; // win rate 34 per
+		enemy_speed += 0.31; // win rate 45 per
 	}
 		
 }
