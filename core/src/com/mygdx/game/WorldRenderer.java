@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -14,6 +15,8 @@ public class WorldRenderer {
 	private Texture ballImg;
 	private Texture enemyImg;
 	
+	private BitmapFont font;
+	
 	public WorldRenderer(HockeyGame hockeyGame, World world) {
 	        this.hockeyGame = hockeyGame;
 	        batch = hockeyGame.batch;
@@ -21,8 +24,11 @@ public class WorldRenderer {
 	        this.world = world;
 	 
 	        playerImg = new Texture("base.gif");
-	        ballImg = new Texture("player.png");
+	        ballImg = new Texture("ball.gif");
 	        enemyImg = new Texture("base.gif");
+	        
+	        font = new BitmapFont();
+
 	}
 	
 	public void render(float delta) {
@@ -42,6 +48,9 @@ public class WorldRenderer {
 		batch.draw(playerImg, player_pos.x ,player_pos.y);
 		batch.draw(ballImg, ball_pos.x ,ball_pos.y);
 		batch.draw(enemyImg, enemy_pos.x, enemy_pos.y);
+		
+		font.draw(batch, "My score " + world.get_myScore() + "   Opponent Score  " + world.get_opScore() ,180, 40);
+		
 		
 		batch.end();
 	

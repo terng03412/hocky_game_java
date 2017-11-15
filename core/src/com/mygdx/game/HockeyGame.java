@@ -9,7 +9,7 @@ public class HockeyGame extends Game {
 	Texture img;
 	
 	public static final int SC_HEIGHT = 800;
-	public static final int SC_WIDTH = 800;
+	public static final int SC_WIDTH = 500;
 	
 	@Override
 	public void create () {
