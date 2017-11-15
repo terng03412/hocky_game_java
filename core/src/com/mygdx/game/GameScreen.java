@@ -89,7 +89,7 @@ public class GameScreen extends ScreenAdapter{
 		
 		if(ball_pos.x < player_pos.x+player_width
 				& ball_pos.x > player_pos.x-player_width 
-				& ball_pos.y < player_pos.y+player_height
+				& ball_pos.y < player_pos.y+player_height+10
 				& ball_pos.y > player_pos.y
 				) {
 			ball.CHANGE_DIR_Y_AXIS();
@@ -119,13 +119,24 @@ public class GameScreen extends ScreenAdapter{
 			enemy.move(1);
 		}
 		
-		
-		if(ball_pos.y > HockeyGame.SC_HEIGHT-70 || ball_pos.y<70) {
+		//increase score
+		if( ball_pos.y<70) {
 			ball.stop();
 			ball.set_to_init();
 			enemy.set_speed_toInit();
 			
+			world.increase_opponent_score();
 		}
+		
+		if(ball_pos.y > HockeyGame.SC_HEIGHT-70 ) {
+			ball.stop();
+			ball.set_to_init();
+			enemy.set_speed_toInit();
+			
+			world.increase_my_score();
+		}
+		
+		
 		
 	
 	}
