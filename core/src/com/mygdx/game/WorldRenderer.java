@@ -16,6 +16,9 @@ public class WorldRenderer {
 	private Texture enemyImg;
 	private Texture randomObjImg;
 	
+	private int i=0;
+	public String[] text = {"ball.gif","ball2.gif","ball3.gif","ball4.gif"};
+	
 	private BitmapFont font;
 	
 	public WorldRenderer(HockeyGame hockeyGame, World world) {
@@ -30,6 +33,18 @@ public class WorldRenderer {
 	        
 	        font = new BitmapFont();
 
+	}
+	
+	public void changeBallImg() {
+		i += 1;
+		i%=4;
+		
+		ballImg = new Texture(text[i]);
+		
+	}
+	
+	public String getText_color() {
+		return text[i];
 	}
 	
 	public void render(float delta) {

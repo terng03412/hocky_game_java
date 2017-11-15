@@ -33,14 +33,15 @@ public class GameScreen extends ScreenAdapter{
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
-		
-		playerImg = new Texture("base.gif");
-		ballImg = new Texture("ball.gif");
-		enemyImg = new Texture("base.gif");
 
-		
 		world = new World(hockeyGame);
 		worldRenderer = new WorldRenderer(hockeyGame , world);
+		
+		playerImg = new Texture("base.gif");
+		ballImg = new Texture(worldRenderer.getText_color());
+		enemyImg = new Texture("base.gif");
+		
+
 	}
 	
 	public void update(float delta) {
@@ -114,6 +115,8 @@ public class GameScreen extends ScreenAdapter{
 			ball.INCREASE_SPEED();
 			ball.move();
 			enemy.increase_speed();
+			worldRenderer.changeBallImg();
+			
 			
 		}
 		
@@ -122,13 +125,15 @@ public class GameScreen extends ScreenAdapter{
 		
 		if(ball_pos.x < enemy_pos.x+enemy_width
 				& ball_pos.x > enemy_pos.x-enemy_width
-				& ball_pos.y > enemy_pos.y-enemy_height
+				& ball_pos.y > enemy_pos.y-enemy_height-10
 				& ball_pos.y < enemy_pos.y+10
 				) {
 			ball.CHANGE_DIR_Y_AXIS();
 			ball.INCREASE_SPEED();
 			ball.move();
 			enemy.increase_speed();
+			
+			worldRenderer.changeBallImg();
 			
 
 		}
@@ -141,7 +146,7 @@ public class GameScreen extends ScreenAdapter{
 		}
 		
 		//increase score
-		if( ball_pos.y<70) {
+		if( ball_pos.y<100) {
 			ball.stop(); 
 			
 //			debug
@@ -153,7 +158,7 @@ public class GameScreen extends ScreenAdapter{
 			world.increase_opponent_score();
 		}
 		
-		if(ball_pos.y > HockeyGame.SC_HEIGHT-70 ) {
+		if(ball_pos.y > HockeyGame.SC_HEIGHT-100 ) {
 			ball.stop();
 			ball.set_to_init();
 			
