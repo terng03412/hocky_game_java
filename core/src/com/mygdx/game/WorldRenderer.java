@@ -14,6 +14,7 @@ public class WorldRenderer {
 	private Texture playerImg;
 	private Texture ballImg;
 	private Texture enemyImg;
+	private Texture randomObjImg;
 	
 	private BitmapFont font;
 	
@@ -38,12 +39,14 @@ public class WorldRenderer {
 		Player player = world.getPlayer();
 		Ball ball = world.getBall();
 		Enemy enemy = world.getEnemy();
+
 		
 		batch.begin();
 		
 		Vector2 player_pos = player.getPosition();
 		Vector2 ball_pos = ball.getPosition();
 		Vector2 enemy_pos = enemy.getPosition();
+		
 		
 		batch.draw(playerImg, player_pos.x ,player_pos.y);
 		batch.draw(ballImg, ball_pos.x ,ball_pos.y);

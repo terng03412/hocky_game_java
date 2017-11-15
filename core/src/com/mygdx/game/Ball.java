@@ -54,7 +54,19 @@ public class Ball {
 	public float getSpeed() {
 		return BALL_SPEED;
 	}
-		
+	
+	public void slow() {
+		if(BALL_SPEED >0){
+		BALL_SPEED -= 1;
+		}
+		else {
+			BALL_SPEED += 0;
+		}
+	}
+	
+	public void speedUp() {
+		BALL_SPEED += 1;
+	}
 	
 }
 
