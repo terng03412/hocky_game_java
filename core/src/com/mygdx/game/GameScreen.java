@@ -25,11 +25,7 @@ public class GameScreen extends ScreenAdapter{
 	private Enemy enemy;
 
 	
-	private int player_width = 60;
-	private int player_height = 20;
 	
-	private int enemy_width = 60;
-	private int enemy_height = 30;
 	
 	public GameScreen(HockeyGame hockeyGame) {
 		this.hockeyGame = hockeyGame ;
@@ -106,14 +102,26 @@ public class GameScreen extends ScreenAdapter{
 		Vector2 player_pos = player.getPosition();
 		//debug
 		
+		int player_width = player.getWidth();
+		int player_height = player.getHeight();
+		
+		int enemy_width = enemy.getWidth();
+		int enemy_height = enemy.getHeight();
+		
 		if(ball_pos.x < player_pos.x+player_width+20
 				& ball_pos.x > player_pos.x-player_width-20
 				& ball_pos.y < player_pos.y+player_height
 				& ball_pos.y > player_pos.y-10
 				) {
+			
+			ball.change_deg(player_pos,ball_pos);
+			
 			ball.CHANGE_DIR_Y_AXIS();
+			ball.CHANGE_DIR_X_AXIS();
+			
 			ball.INCREASE_SPEED();
 			ball.move();
+			
 			enemy.increase_speed();
 			worldRenderer.changeBallImg();
 			
@@ -128,17 +136,20 @@ public class GameScreen extends ScreenAdapter{
 				& ball_pos.y > enemy_pos.y-enemy_height-10
 				& ball_pos.y < enemy_pos.y+10
 				) {
+			
+			ball.change_deg(enemy_pos,ball_pos);
 			ball.CHANGE_DIR_Y_AXIS();
+			ball.CHANGE_DIR_X_AXIS();
 			ball.INCREASE_SPEED();
 			ball.move();
-			enemy.increase_speed();
 			
+			enemy.increase_speed();
 			worldRenderer.changeBallImg();
 			
 
 		}
 		
-		if(enemy_pos.x>ball_pos.x) {
+		if(enemy_pos.x>ball_pos.x-50) {
 			enemy.move(2);
 		}
 		else if(enemy_pos.x < ball_pos.x) {

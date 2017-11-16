@@ -11,6 +11,17 @@ public class Player {
     public static final int DIRECTION_STILL = 0;
     private int SPEED = 4;
     
+    private int height = 30;
+    private int width = 60;
+    
+    public int getWidth() {
+    	return width;
+    }
+    
+    public int getHeight() {
+    	return height;
+    }
+    
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},
 		{1,0},

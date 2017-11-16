@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.util.Random;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Ball {
@@ -11,20 +13,25 @@ public class Ball {
     public float BALL_SPEED = 2;
     public int X_AXIS_DIRECTION = 1;
     public int Y_AXIS_DIRECTION = 1;
+    
+    private double deg_x = 1;
+    private double deg_y = 1;
 	
     public Ball(int x ,int y) {
 		position = new Vector2(x,y);
 	}
     
     public void move () {
-		position.x += BALL_SPEED*X_AXIS_DIRECTION*stop_ball;
-		position.y += BALL_SPEED*Y_AXIS_DIRECTION*stop_ball;
+		position.x += BALL_SPEED*X_AXIS_DIRECTION*stop_ball*deg_x;
+		position.y += BALL_SPEED*Y_AXIS_DIRECTION*stop_ball*deg_y;
 	}
     
     public void set_to_init() {
     	position.x = HockeyGame.SC_WIDTH/2;
     	position.y = HockeyGame.SC_HEIGHT/2; 
     	BALL_SPEED = 2;
+    	deg_x = 1;
+    	deg_y = 1;
     }
 
 	public Vector2 getPosition() {
@@ -66,6 +73,13 @@ public class Ball {
 	
 	public void speedUp() {
 		BALL_SPEED += 1;
+	}
+
+	public void change_deg(Vector2 obj_pos, Vector2 ball_pos) {
+		double degree =  Math.atan((obj_pos.x-ball_pos.x)/(obj_pos.y-ball_pos.y));
+		deg_x =  Math.sin(degree)*0.5;
+		deg_y = Math.cos(degree);
+
 	}
 	
 }

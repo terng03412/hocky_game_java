@@ -11,6 +11,17 @@ public class Enemy {
     public static final int DIRECTION_STILL = 0;
     private float enemy_speed = 2;
     
+    private int height = 30;
+    private int width = 60;
+    
+    public int getWidth() {
+    	return width;
+    }
+    
+    public int getHeight() {
+    	return height;
+    }
+    
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},
 		{1,0},
