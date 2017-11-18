@@ -59,6 +59,7 @@ public class GameScreen extends ScreenAdapter{
 			if(Gdx.input.isKeyPressed(Keys.SPACE))
 			{
 				world.ChangeToGame();
+				world.Restart();
 			}
 		}
 		
