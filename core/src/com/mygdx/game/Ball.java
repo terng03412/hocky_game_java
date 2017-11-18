@@ -10,12 +10,15 @@ public class Ball {
 
 
     public int stop_ball=0;
-    public float BALL_SPEED = 2;
+    public float BALL_SPEED = 5;
     public int X_AXIS_DIRECTION = 1;
     public int Y_AXIS_DIRECTION = 1;
     
     private double deg_x = 1;
     private double deg_y = 1;
+    
+    private int radius = 30;
+    
 	
     public Ball(int x ,int y) {
 		position = new Vector2(x,y);
@@ -29,13 +32,17 @@ public class Ball {
     public void set_to_init() {
     	position.x = HockeyGame.SC_WIDTH/2;
     	position.y = HockeyGame.SC_HEIGHT/2; 
-    	BALL_SPEED = 2;
+    	BALL_SPEED = 5;
     	deg_x = 1;
     	deg_y = 1;
     }
 
 	public Vector2 getPosition() {
 		return position;
+	}
+	
+	public int getRadius() {
+		return radius;
 	}
 	
 	public void start() {
@@ -50,9 +57,14 @@ public class Ball {
 		X_AXIS_DIRECTION *= -1;
 	}
 	
-	public void CHANGE_DIR_Y_AXIS() {
-		Y_AXIS_DIRECTION *= -1;
+	public void CHANGE_DIR_TO_UP() {
+		Y_AXIS_DIRECTION = 1;
 	}
+	
+	public void CHANGE_DIR_TO_DOWN() {
+		Y_AXIS_DIRECTION = -1;
+	}
+	
 	
 	public void INCREASE_SPEED() {
 		BALL_SPEED += 0.5 ;
@@ -62,22 +74,11 @@ public class Ball {
 		return BALL_SPEED;
 	}
 	
-	public void slow() {
-		if(BALL_SPEED >0){
-		BALL_SPEED -= 1;
-		}
-		else {
-			BALL_SPEED += 0;
-		}
-	}
-	
-	public void speedUp() {
-		BALL_SPEED += 1;
-	}
+
 
 	public void change_deg(Vector2 obj_pos, Vector2 ball_pos) {
 		double degree =  Math.atan((obj_pos.x-ball_pos.x)/(obj_pos.y-ball_pos.y));
-		deg_x =  Math.sin(degree)*0.5;
+		deg_x =  Math.sin(degree);
 		deg_y = Math.cos(degree);
 
 	}

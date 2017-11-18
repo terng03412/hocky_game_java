@@ -24,6 +24,12 @@ public class GameScreen extends ScreenAdapter{
 	private Ball ball;
 	private Enemy enemy;
 
+	private Vector2 enemy_pos;
+
+	private Vector2 ball_pos;
+
+	private Vector2 player_pos;
+
 	
 	
 	
@@ -40,18 +46,27 @@ public class GameScreen extends ScreenAdapter{
 
 	}
 	
+	private double distance(Vector2 obj1 , Vector2 obj2) {
+		double dis_x = Math.pow((obj1.x-obj2.x), 2);
+		double dis_y = Math.pow((obj1.y-obj2.y), 2);
+		
+		return Math.sqrt(dis_x + dis_y);
+	}
+	
 	public void update(float delta) {
 		
 		player = world.getPlayer();
 		ball = world.getBall();
 		enemy = world.getEnemy();
 
+		player_pos = player.getPosition();
+		ball_pos = ball.getPosition();
+		enemy_pos = enemy.getPosition();
 		
-//		-----------------------------------------------------
+//		-----------------------------------------------------Control
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.move(player.DIRECTION_LEFT);
-			ball.start();
-			
+			ball.start();	
 		}
 		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			player.move(player.DIRECTION_RIGHT);
@@ -60,35 +75,10 @@ public class GameScreen extends ScreenAdapter{
 		else {
 			player.move(player.DIRECTION_STILL);	
 		}
-		
-		if(Gdx.input.isKeyPressed(Keys.S)) {
-			ball.slow();
-		}
-		
-		if(Gdx.input.isKeyPressed(Keys.I)) {
-			ball.INCREASE_SPEED();
-		}
-		
-		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
-			ball.CHANGE_DIR_X_AXIS();
-		}
-		
-//		debug------- bot mode
-//		Vector2 player_pos = player.getPosition();
-//		Vector2 ball_pos = ball.getPosition();
-//------------
-//		
-//		if(player_pos.x>ball_pos.x) {
-//			player.move(player.DIRECTION_LEFT);
-//		}
-//		else if(player_pos.x < ball_pos.x) {
-//			player.move(player.DIRECTION_RIGHT);
-//		}
-//		
+	
 //		------------------------------------------------------
-		Vector2 ball_pos = ball.getPosition();
-		//debug
 		
+//BOUNCE WALL		
 		if(ball_pos.x<100) {
 			ball.CHANGE_DIR_X_AXIS();
 		}
@@ -99,46 +89,33 @@ public class GameScreen extends ScreenAdapter{
 		ball.move();
 
 		//--------------------------------------------
-		Vector2 player_pos = player.getPosition();
-		//debug
+		//BOUNCE PLAYER
 		
-		int player_width = player.getWidth();
-		int player_height = player.getHeight();
-		
-		int enemy_width = enemy.getWidth();
-		int enemy_height = enemy.getHeight();
-		
-		if(ball_pos.x < player_pos.x+player_width+20
-				& ball_pos.x > player_pos.x-player_width-20
-				& ball_pos.y < player_pos.y+player_height
-				& ball_pos.y > player_pos.y-10
+
+		if(distance(player_pos , ball_pos)<player.getRadius()+ball.getRadius()
 				) {
 			
 			ball.change_deg(player_pos,ball_pos);
 			
-			ball.CHANGE_DIR_Y_AXIS();
+			ball.CHANGE_DIR_TO_UP();
 			ball.CHANGE_DIR_X_AXIS();
 			
 			ball.INCREASE_SPEED();
 			ball.move();
 			
 			enemy.increase_speed();
-			worldRenderer.changeBallImg();
 			
 			
 		}
 		
 //		----------------------------------------------------
-		Vector2 enemy_pos = enemy.getPosition();
+		//BOUNCE ENEMY
 		
-		if(ball_pos.x < enemy_pos.x+enemy_width
-				& ball_pos.x > enemy_pos.x-enemy_width
-				& ball_pos.y > enemy_pos.y-enemy_height-10
-				& ball_pos.y < enemy_pos.y+10
-				) {
+		if(distance(enemy_pos , ball_pos)<enemy.getRadius()+ball.getRadius())
+		{
 			
 			ball.change_deg(enemy_pos,ball_pos);
-			ball.CHANGE_DIR_Y_AXIS();
+			ball.CHANGE_DIR_TO_DOWN();
 			ball.CHANGE_DIR_X_AXIS();
 			ball.INCREASE_SPEED();
 			ball.move();
@@ -148,36 +125,26 @@ public class GameScreen extends ScreenAdapter{
 			
 
 		}
-		
-		if(enemy_pos.x>ball_pos.x-50) {
-			enemy.move(2);
+//--------------------- bot 
+		if(enemy_pos.x>ball_pos.x & ball_pos.y > HockeyGame.SC_HEIGHT*4/7) {
+			enemy.move(enemy.DIRECTION_LEFT);
 		}
-		else if(enemy_pos.x < ball_pos.x) {
-			enemy.move(1);
+		else if(enemy_pos.x < ball_pos.x & ball_pos.y > HockeyGame.SC_HEIGHT/2) {
+			enemy.move(enemy.DIRECTION_RIGHT);
 		}
-		
+		//-----------------------------------------------------
 		//increase score
 		if( ball_pos.y<100) {
 			ball.stop(); 
-			
-//			debug
 			ball.set_to_init();
-//			ball.move();
-			
 			enemy.set_speed_toInit();
-			
 			world.increase_opponent_score();
 		}
 		
 		if(ball_pos.y > HockeyGame.SC_HEIGHT-100 ) {
 			ball.stop();
 			ball.set_to_init();
-			
-//			debug
-//			ball.move();
-			
 			enemy.set_speed_toInit();
-			
 			world.increase_my_score();
 		}
 		
