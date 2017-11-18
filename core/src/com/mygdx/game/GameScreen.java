@@ -149,6 +149,7 @@ public class GameScreen extends ScreenAdapter{
 				ball.stop(); 
 				ball.set_to_init();
 				enemy.set_speed_toInit();
+				player.setToInit();
 				world.increase_opponent_score();
 			}
 			
@@ -156,6 +157,7 @@ public class GameScreen extends ScreenAdapter{
 				ball.stop();
 				ball.set_to_init();
 				enemy.set_speed_toInit();
+				player.setToInit();
 				world.increase_my_score();
 			}
 		}
