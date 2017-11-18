@@ -9,7 +9,7 @@ public class Enemy {
     public static final int DIRECTION_RIGHT = 1;
     public static final int DIRECTION_LEFT = 2;
     public static final int DIRECTION_STILL = 0;
-    private float enemy_speed = 3;
+    private float enemy_speed = 4;
     
     public int radius = 40;
     
@@ -28,7 +28,7 @@ public class Enemy {
 	}
 	
 	public void set_speed_toInit() {
-		enemy_speed  = 3;
+		enemy_speed  = 4;
 	}
 	
 	public void move (int dir) {

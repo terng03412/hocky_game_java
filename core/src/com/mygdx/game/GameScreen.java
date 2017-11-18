@@ -40,7 +40,7 @@ public class GameScreen extends ScreenAdapter{
 		worldRenderer = new WorldRenderer(hockeyGame , world);
 		
 		playerImg = new Texture("base.gif");
-		ballImg = new Texture(worldRenderer.getText_color());
+		ballImg = new Texture("ball.gif");
 		enemyImg = new Texture("base.gif");
 		
 
@@ -55,97 +55,108 @@ public class GameScreen extends ScreenAdapter{
 	
 	public void update(float delta) {
 		
-		player = world.getPlayer();
-		ball = world.getBall();
-		enemy = world.getEnemy();
-
-		player_pos = player.getPosition();
-		ball_pos = ball.getPosition();
-		enemy_pos = enemy.getPosition();
+		if(world.gameState==world.introState | world.gameState==world.winState | world.gameState==world.loseState) {
+			if(Gdx.input.isKeyPressed(Keys.SPACE))
+			{
+				world.ChangeToGame();
+			}
+		}
 		
-//		-----------------------------------------------------Control
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			player.move(player.DIRECTION_LEFT);
-			ball.start();	
-		}
-		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			player.move(player.DIRECTION_RIGHT);
-			ball.start();
-		}
-		else {
-			player.move(player.DIRECTION_STILL);	
-		}
+		
 	
-//		------------------------------------------------------
-		
-//BOUNCE WALL		
-		if(ball_pos.x<100) {
-			ball.CHANGE_DIR_X_AXIS();
-		}
-		else if(ball_pos.x > HockeyGame.SC_WIDTH-100) {
-			ball.CHANGE_DIR_X_AXIS();
-		}
-		
-		ball.move();
-
-		//--------------------------------------------
-		//BOUNCE PLAYER
-		
-
-		if(distance(player_pos , ball_pos)<player.getRadius()+ball.getRadius()
-				) {
+		if(world.gameState==world.playState) {
+			player = world.getPlayer();
+			ball = world.getBall();
+			enemy = world.getEnemy();
+	
+			player_pos = player.getPosition();
+			ball_pos = ball.getPosition();
+			enemy_pos = enemy.getPosition();
 			
-			ball.change_deg(player_pos,ball_pos);
 			
-			ball.CHANGE_DIR_TO_UP();
-			ball.CHANGE_DIR_X_AXIS();
+//		-----------------------------------------------------Control
+			if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+				player.move(player.DIRECTION_LEFT);
+				ball.start();	
+			}
+			else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+				player.move(player.DIRECTION_RIGHT);
+				ball.start();
+			}
+			else {
+				player.move(player.DIRECTION_STILL);	
+			}
+		
+	//		------------------------------------------------------
 			
-			ball.INCREASE_SPEED();
+	//BOUNCE WALL		
+			if(ball_pos.x<50) {
+				ball.CHANGE_DIR_X_AXIS();
+			}
+			else if(ball_pos.x > HockeyGame.SC_WIDTH-100) {
+				ball.CHANGE_DIR_X_AXIS();
+			}
+			
 			ball.move();
+	
+			//--------------------------------------------
+			//BOUNCE PLAYER
 			
-			enemy.increase_speed();
+	
+			if(distance(player_pos , ball_pos)<player.getRadius()+ball.getRadius()
+					) {
+				
+				ball.change_deg(player_pos,ball_pos);
+				
+				ball.CHANGE_DIR_TO_UP();
+				ball.CHANGE_DIR_X_AXIS();
+				
+				ball.INCREASE_SPEED();
+				ball.move();
+				
+				enemy.increase_speed();
+				
+				
+			}
 			
+	//		----------------------------------------------------
+			//BOUNCE ENEMY
 			
-		}
-		
-//		----------------------------------------------------
-		//BOUNCE ENEMY
-		
-		if(distance(enemy_pos , ball_pos)<enemy.getRadius()+ball.getRadius())
-		{
+			if(distance(enemy_pos , ball_pos)<enemy.getRadius()+ball.getRadius())
+			{
+				
+				ball.change_deg(enemy_pos,ball_pos);
+				ball.CHANGE_DIR_TO_DOWN();
+				ball.CHANGE_DIR_X_AXIS();
+				ball.INCREASE_SPEED();
+				ball.move();
+				
+				enemy.increase_speed();
+				
+	
+			}
+	//--------------------- bot 
+			if(enemy_pos.x>ball_pos.x & ball_pos.y > HockeyGame.SC_HEIGHT*4/7) {
+				enemy.move(enemy.DIRECTION_LEFT);
+			}
+			else if(enemy_pos.x < ball_pos.x & ball_pos.y > HockeyGame.SC_HEIGHT/2) {
+				enemy.move(enemy.DIRECTION_RIGHT);
+			}
+			//-----------------------------------------------------
+			//increase score
+			if( ball_pos.y<100) {
+				ball.stop(); 
+				ball.set_to_init();
+				enemy.set_speed_toInit();
+				world.increase_opponent_score();
+			}
 			
-			ball.change_deg(enemy_pos,ball_pos);
-			ball.CHANGE_DIR_TO_DOWN();
-			ball.CHANGE_DIR_X_AXIS();
-			ball.INCREASE_SPEED();
-			ball.move();
-			
-			enemy.increase_speed();
-			worldRenderer.changeBallImg();
-			
-
-		}
-//--------------------- bot 
-		if(enemy_pos.x>ball_pos.x & ball_pos.y > HockeyGame.SC_HEIGHT*4/7) {
-			enemy.move(enemy.DIRECTION_LEFT);
-		}
-		else if(enemy_pos.x < ball_pos.x & ball_pos.y > HockeyGame.SC_HEIGHT/2) {
-			enemy.move(enemy.DIRECTION_RIGHT);
-		}
-		//-----------------------------------------------------
-		//increase score
-		if( ball_pos.y<100) {
-			ball.stop(); 
-			ball.set_to_init();
-			enemy.set_speed_toInit();
-			world.increase_opponent_score();
-		}
-		
-		if(ball_pos.y > HockeyGame.SC_HEIGHT-100 ) {
-			ball.stop();
-			ball.set_to_init();
-			enemy.set_speed_toInit();
-			world.increase_my_score();
+			if(ball_pos.y > HockeyGame.SC_HEIGHT-100 ) {
+				ball.stop();
+				ball.set_to_init();
+				enemy.set_speed_toInit();
+				world.increase_my_score();
+			}
 		}
 		
 		
