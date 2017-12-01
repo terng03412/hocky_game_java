@@ -9,18 +9,9 @@ public class Enemy {
     public static final int DIRECTION_RIGHT = 1;
     public static final int DIRECTION_LEFT = 2;
     public static final int DIRECTION_STILL = 0;
-    private float enemy_speed = 2;
+    private float enemy_speed = 4;
     
-    private int height = 30;
-    private int width = 60;
-    
-    public int getWidth() {
-    	return width;
-    }
-    
-    public int getHeight() {
-    	return height;
-    }
+    public int radius = 40;
     
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},
@@ -32,8 +23,12 @@ public class Enemy {
 		position = new Vector2(x,y);
 	}
 	
+	public int getRadius() {
+		return radius;
+	}
+	
 	public void set_speed_toInit() {
-		enemy_speed  = 2;
+		enemy_speed  = 4;
 	}
 	
 	public void move (int dir) {
@@ -45,7 +40,7 @@ public class Enemy {
 	}
 	
 	public void increase_speed() {
-		enemy_speed += 0.25; // win rate 45 per
+		enemy_speed += 0.2; // win rate 45 per
 	}
 		
 }
