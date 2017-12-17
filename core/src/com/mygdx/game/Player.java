@@ -6,10 +6,10 @@ public class Player {
 
 	private Vector2 position;
 
-    public static final int DIRECTION_RIGHT = 1;
-    public static final int DIRECTION_LEFT = 2;
-    public static final int DIRECTION_STILL = 0;
-    private int SPEED =8;
+    public static final int dirRight = 1;
+    public static final int dirLeft = 2;
+    public static final int dirStill = 0;
+    private int speed =7;
     
     
     private int radius = 40;
@@ -19,7 +19,7 @@ public class Player {
     }
     
    
-	private static final int [][] DIR_OFFSETS = new int [][] {
+	private static final int [][] dirOffsets = new int [][] {
 		{0,0},
 		{1,0},
         {-1,0}
@@ -30,7 +30,7 @@ public class Player {
 	}
 	
 	public void move (int dir) {
-		position.x += SPEED*DIR_OFFSETS[dir][0]; 
+		position.x += speed*dirOffsets[dir][0]; 
 	}
 	
 	public Vector2 getPosition() {
@@ -38,7 +38,7 @@ public class Player {
 	}
 	
 	 public void setToInit() {
-		 position.x = HockeyGame.SC_WIDTH/2;
+		 position.x = HockeyGame.screenWidth/2;
 	 }
 	    
 		

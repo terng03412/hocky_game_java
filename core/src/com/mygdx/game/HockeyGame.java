@@ -8,8 +8,8 @@ public class HockeyGame extends Game {
 	public SpriteBatch batch;
 	Texture img;
 	
-	public static final int SC_HEIGHT = 800;
-	public static final int SC_WIDTH = 500;
+	public static final int screenHeight = 800;
+	public static final int screenWidth = 500;
 	
 	@Override
 	public void create () {

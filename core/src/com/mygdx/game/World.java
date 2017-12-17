@@ -6,8 +6,8 @@ public class World {
 	private Ball ball;
 	private Enemy enemy;
 	
-	private int player_score = 0;
-	private int opponent_score = 0;
+	private int playerScore = 0;
+	private int opponentScore = 0;
 	
 	private HockeyGame hockeyGame;
 	
@@ -21,9 +21,9 @@ public class World {
 	World(HockeyGame hockeyGame){
 		this.hockeyGame = hockeyGame;
 		
-		player = new Player(HockeyGame.SC_WIDTH/2, 100);
-		ball = new Ball(HockeyGame.SC_WIDTH/2,HockeyGame.SC_HEIGHT/2);
-		enemy = new Enemy(HockeyGame.SC_WIDTH/2, HockeyGame.SC_HEIGHT-100);
+		player = new Player(HockeyGame.screenWidth/2, 100);
+		ball = new Ball(HockeyGame.screenWidth/2,HockeyGame.screenHeight/2);
+		enemy = new Enemy(HockeyGame.screenWidth/2, HockeyGame.screenHeight-100);
 		
 	
 	}
@@ -46,8 +46,8 @@ public class World {
 	
 	public void Restart() {
 		gameState = playState;
-		player_score = 0;
-		opponent_score = 0;
+		playerScore = 0;
+		opponentScore = 0;
 	}
 	
 	Player getPlayer() {
@@ -55,26 +55,26 @@ public class World {
 	}
 	
 
-	public void increase_my_score() {
-		player_score += 1;
-		if(player_score >= 5) {
+	public void increaseMySpeed() {
+		playerScore += 1;
+		if(playerScore >= 5) {
 			ChangeToWin();
 		}
 	}
 	
-	public void increase_opponent_score() {
-		opponent_score += 1;
-		if(opponent_score >= 5) {
+	public void increaseOppScore() {
+		opponentScore += 1;
+		if(opponentScore >= 5) {
 			ChangeToLose();
 		}
 	}
 	
-	public int get_myScore() {
-		return player_score;
+	public int getMyScore() {
+		return playerScore;
 	}
 	
-	public int get_opScore() {
-		return opponent_score;
+	public int getOppScore() {
+		return opponentScore;
 	}
 	
 	

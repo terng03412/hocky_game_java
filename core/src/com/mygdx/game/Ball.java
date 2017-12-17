@@ -9,10 +9,10 @@ public class Ball {
 	private Vector2 position;
 
 
-    public int stop_ball=0;
-    public float BALL_SPEED = 5;
-    public int X_AXIS_DIRECTION = 1;
-    public int Y_AXIS_DIRECTION = 1;
+    public int stopBall=0;
+    public float ballSpeed = 5;
+    public int xAxisDiredtion = 1;
+    public int yAxisDiredtion = 1;
     
     private double deg_x = 1;
     private double deg_y = 1;
@@ -25,14 +25,14 @@ public class Ball {
 	}
     
     public void move () {
-		position.x += BALL_SPEED*X_AXIS_DIRECTION*stop_ball*deg_x;
-		position.y += BALL_SPEED*Y_AXIS_DIRECTION*stop_ball*deg_y;
+		position.x += ballSpeed*xAxisDiredtion*stopBall*deg_x;
+		position.y += ballSpeed*yAxisDiredtion*stopBall*deg_y;
 	}
     
-    public void set_to_init() {
-    	position.x = HockeyGame.SC_WIDTH/2;
-    	position.y = HockeyGame.SC_HEIGHT/2; 
-    	BALL_SPEED = 5;
+    public void setToInit() {
+    	position.x = HockeyGame.screenWidth/2;
+    	position.y = HockeyGame.screenHeight/2; 
+    	ballSpeed = 5;
     	deg_x = 1;
     	deg_y = 1;
     }
@@ -46,38 +46,38 @@ public class Ball {
 	}
 	
 	public void start() {
-		stop_ball = 1;
+		stopBall = 1;
 	}
 	
 	public void stop()
 	{
-		stop_ball = 0;
+		stopBall = 0;
 	}
-	public void CHANGE_DIR_X_AXIS() {
-		X_AXIS_DIRECTION *= -1;
-	}
-	
-	public void CHANGE_DIR_TO_UP() {
-		Y_AXIS_DIRECTION = 1;
+	public void changeDirXAxis() {
+		xAxisDiredtion *= -1;
 	}
 	
-	public void CHANGE_DIR_TO_DOWN() {
-		Y_AXIS_DIRECTION = -1;
+	public void changeDirToUp() {
+		yAxisDiredtion = 1;
+	}
+	
+	public void changeDirToDown() {
+		yAxisDiredtion = -1;
 	}
 	
 	
-	public void INCREASE_SPEED() {
-		BALL_SPEED += 0.5 ;
+	public void increaseSpeed() {
+		ballSpeed += 0.5 ;
 	}
 	
 	public float getSpeed() {
-		return BALL_SPEED;
+		return ballSpeed;
 	}
 	
 
 
-	public void change_deg(Vector2 obj_pos, Vector2 ball_pos) {
-		double degree =  Math.atan((obj_pos.x-ball_pos.x)/(obj_pos.y-ball_pos.y));
+	public void changeDegree(Vector2 objectPosition, Vector2 ballPosition) {
+		double degree =  Math.atan((objectPosition.x-ballPosition.x)/(objectPosition.y-ballPosition.y));
 		deg_x =  Math.sin(degree);
 		deg_y = Math.cos(degree);
 

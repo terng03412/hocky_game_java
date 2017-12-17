@@ -58,16 +58,16 @@ public class WorldRenderer {
 			batch.begin();
 			
 			
-			Vector2 player_pos = player.getPosition();
-			Vector2 ball_pos = ball.getPosition();
-			Vector2 enemy_pos = enemy.getPosition();
+			Vector2 playerPosition = player.getPosition();
+			Vector2 ballPosition = ball.getPosition();
+			Vector2 enemyPosition = enemy.getPosition();
 			
 			batch.draw(bgImg, 0 , 0);
-			batch.draw(playerImg, player_pos.x ,player_pos.y);
-			batch.draw(ballImg, ball_pos.x ,ball_pos.y);
-			batch.draw(enemyImg, enemy_pos.x, enemy_pos.y);
+			batch.draw(playerImg, playerPosition.x ,playerPosition.y);
+			batch.draw(ballImg, ballPosition.x ,ballPosition.y);
+			batch.draw(enemyImg, enemyPosition.x, enemyPosition.y);
 			
-			font.draw(batch, "My score " + world.get_myScore() + "   Opponent Score  " + world.get_opScore() ,180, 40);
+			font.draw(batch, "My score " + world.getMyScore() + "   Opponent Score  " + world.getOppScore() ,180, 40);
 			
 			
 			batch.end();

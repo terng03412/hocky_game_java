@@ -7,8 +7,8 @@ import com.mygdx.game.HockeyGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = HockeyGame.SC_WIDTH;
-		config.height = HockeyGame.SC_HEIGHT;
+		config.width = HockeyGame.screenWidth;
+		config.height = HockeyGame.screenHeight;
 		
 		
 		new LwjglApplication(new HockeyGame(), config);

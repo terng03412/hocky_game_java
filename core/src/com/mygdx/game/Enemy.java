@@ -6,14 +6,14 @@ public class Enemy {
 
 	private Vector2 position;
 
-    public static final int DIRECTION_RIGHT = 1;
-    public static final int DIRECTION_LEFT = 2;
-    public static final int DIRECTION_STILL = 0;
-    private float enemy_speed = 4;
+    public static final int dirRight = 1;
+    public static final int dirLeft = 2;
+    public static final int dirStill = 0;
+    private float enemySpeed = 4;
     
     public int radius = 40;
     
-	private static final int [][] DIR_OFFSETS = new int [][] {
+	private static final int [][] dirOffsets = new int [][] {
 		{0,0},
 		{1,0},
         {-1,0}
@@ -27,20 +27,20 @@ public class Enemy {
 		return radius;
 	}
 	
-	public void set_speed_toInit() {
-		enemy_speed  = 4;
+	public void setSpeedToInit() {
+		enemySpeed  = 4;
 	}
 	
 	public void move (int dir) {
-		position.x += enemy_speed*DIR_OFFSETS[dir][0]; 
+		position.x += enemySpeed*dirOffsets[dir][0]; 
 	}
 	
 	public Vector2 getPosition() {
 		return position;
 	}
 	
-	public void increase_speed() {
-		enemy_speed += 0.2; // win rate 45 per
+	public void increaseSpeed() {
+		enemySpeed += 0.2; // win rate 45 per
 	}
 		
 }
